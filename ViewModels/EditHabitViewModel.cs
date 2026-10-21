@@ -54,7 +54,7 @@ public partial class EditHabitViewModel(DatabaseService db) : ObservableObject
 		var trimmed = Name.Trim();
 		if (trimmed.Length == 0)
 		{
-			await Shell.Current.DisplayAlert("Нужно название", "Введите название привычки.", "OK");
+			await Shell.Current.DisplayAlertAsync("Нужно название", "Введите название привычки.", "OK");
 			return;
 		}
 

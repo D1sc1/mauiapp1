@@ -107,7 +107,7 @@ public partial class HabitDetailViewModel(DatabaseService db) : ObservableObject
 	[RelayCommand]
 	private async Task DeleteAsync()
 	{
-		var confirmed = await Shell.Current.DisplayAlert(
+		var confirmed = await Shell.Current.DisplayAlertAsync(
 			"Удалить привычку?",
 			$"«{Title}» и вся история отметок будут удалены.",
 			"Удалить",
