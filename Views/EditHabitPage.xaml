@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:HabitTracker.ViewModels"
+             xmlns:graphics="clr-namespace:Microsoft.Maui.Graphics;assembly=Microsoft.Maui.Graphics"
+             x:Class="HabitTracker.Views.EditHabitPage"
+             x:DataType="vm:EditHabitViewModel"
+             Title="{Binding PageTitle}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Название" Style="{StaticResource MutedLabel}" />
+                <Entry Text="{Binding Name}" Placeholder="Например, Выпить воды" MaxLength="40" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Иконка" Style="{StaticResource MutedLabel}" />
+                <CollectionView ItemsSource="{Binding Emojis}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedEmoji}"
+                                HeightRequest="64">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="8" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <Border WidthRequest="56" HeightRequest="56"
+                                    StrokeThickness="2" Stroke="Transparent"
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource CardLight}, Dark={StaticResource CardDark}}">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="16" />
+                                </Border.StrokeShape>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Stroke" Value="{StaticResource Primary}" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+                                <Label Text="{Binding .}" FontSize="26" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Цвет" Style="{StaticResource MutedLabel}" />
+                <CollectionView ItemsSource="{Binding Palette}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedColor}"
+                                HeightRequest="64">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="8" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="graphics:Color">
+                            <Border WidthRequest="56" HeightRequest="56"
+                                    StrokeThickness="3" Stroke="Transparent"
+                                    BackgroundColor="{Binding .}">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="28" />
+                                </Border.StrokeShape>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Stroke" Value="{AppThemeBinding Light=Black, Dark=White}" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <Button Text="Сохранить" Style="{StaticResource PrimaryButton}" Command="{Binding SaveCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
