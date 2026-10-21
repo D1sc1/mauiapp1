@@ -1,6 +1,6 @@
 # Трекер привычек (.NET MAUI)
 
-Учебное приложение на .NET 8 MAUI, по сложности близкое к «календарю с заметками».
+Учебное приложение на .NET 10 MAUI, по сложности близкое к «календарю с заметками».
 
 ## Что умеет
 
@@ -26,11 +26,11 @@
 
 ## Запуск
 
-Нужны Visual Studio 2022 17.8+ с workload «.NET Multi-platform App UI» (или `dotnet workload install maui`).
+Нужны Visual Studio 2026 (или 2022 17.14+) с workload «.NET Multi-platform App UI» (или `dotnet workload install maui`).
 
 ```
-dotnet build -t:Run -f net8.0-android
-dotnet build -t:Run -f net8.0-windows10.0.19041.0   # только на Windows
+dotnet build -t:Run -f net10.0-android
+dotnet build -t:Run -f net10.0-windows10.0.19041.0   # только на Windows
 ```
 
 Или откройте `HabitTracker.csproj` в Visual Studio и выберите Android-эмулятор / Windows Machine.
